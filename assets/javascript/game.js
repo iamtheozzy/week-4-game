@@ -11,12 +11,16 @@ var numberOptions = [];
 function newNumberOptions(){
   var i = 0;
   while(i < 4){
+    i++;
     var randomNumber = (Math.floor(Math.random() * 11) + 1);
     if(numberOptions.indexOf(randomNumber) == -1){
       numberOptions.push(randomNumber);
-      i++;}
+    } else {
+      randomNumber = (Math.floor(Math.random() * 11) + 1);
+      numberOptions.push(randomNumber);
+    }
   }
-}
+};
 // creates new set of random numbers for arrays.
 newNumberOptions();
 console.log(numberOptions);
@@ -40,6 +44,7 @@ for (var i = 0; i < numberOptions.length; i++) {
 
 // Function to reset crystal values, targetNumber, and playerScore
 function reset() {
+
   newNumberOptions();
 
   targetNumber = Math.floor(Math.random() * 101) + 19;
@@ -68,12 +73,14 @@ $("img").on("click", function() {
     win++;
     $("#wins").html(win);
     $("#losses").html(losses);
+    var numberOptions = [];
     reset();
   }
   else if (score >= targetNumber) {
     alert("You Lose!!");
     losses++
     $("#losses").html(losses);
+    var numberOptions = [];
     reset();
   }
 
