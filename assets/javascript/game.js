@@ -23,7 +23,7 @@ console.log(numberOptions);
 
 // Global game variables
 var score = 0;
-$("#playerScore").text(score)
+$("#playerScore").html(score)
 var win = 0;
 var losses = 0;
 
@@ -46,11 +46,44 @@ function reset() {
   $("#randomNum").text(targetNumber);
 
   score = 0;
-  $("#playerScore").text(counter);
+  $("#playerScore").html(score);
 };
 
 // on click function that grabs value of each crystal and adds it to the score.
 // This on.click function also holds win and loss if statements.
+
+$("img").on("click", function() {
+
+  var crystalValue = ($(this).attr("value"));
+  crystalValue = parseInt(crystalValue);
+
+  // every click adds to the score
+  score += crystalValue;
+
+  // updates #playerScore in HTML
+  $("#playerScore").html(score)
+
+  if (score === targetNumber) {
+    alert("You Win!");
+    win++;
+    $("#wins").html(win);
+    $("#losses").html(losses);
+    reset();
+  }
+  else if (score >= targetNumber) {
+    alert("You Lose!!");
+    losses++
+    $("#losses").html(losses);
+    reset();
+  }
+
+// end of on click Function
+});
+
+
+
+
+
 
 // End of document ready function
 });
